@@ -8,3 +8,4 @@ The is a vanilla javascript state management library with a demo app.
 5. In **pureFunctions.md** this file explains and gives example of how to create **pure functions** for your reducers
 6. In **reducerComposition.md** this file explains and give example of **Normalizing** the **Redux Store**
 7. In **index.html** I UI version of the demo app can be executed in a browser. 
+8. In **index-with-redux.html** We remove the `createStore` function and replace it with `Redux.createStore` from **Redux** to prove that the libraries are essentially the same. 
