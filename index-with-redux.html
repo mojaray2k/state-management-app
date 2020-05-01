@@ -98,21 +98,17 @@
         }
       }
 
-      function rootReducer(state = {}, action) {
-        return {
-          todos: todos(state.todos, action),
-          goals: goals(state.goals, action),
-        };
-      }
+      const store = Redux.createStore(
+        Redux.combineReducers({
+          todos,
+          goals,
+        })
+      );
 
-      const store = Redux.createStore(rootReducer);
       store.getState();
-      store.subscribe(() => {
-        // console.log("The new state of the store is :", store.getState());
-        const { goals, todos } = store.getState();
 
-        // console.log("goals", goals);
-        // console.log("todos", todos);
+      store.subscribe(() => {
+        const { goals, todos } = store.getState();
 
         document.getElementById("goals").innerHTML = "";
         document.getElementById("todos").innerHTML = "";
