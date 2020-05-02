@@ -124,6 +124,16 @@
         };
       }
 
+      function handleInitialData() {
+        return (dispatch) => {
+          return Promise.all([API.fetchTodos(), API.fetchGoals()]).then(
+            ([todos, goals]) => {
+              dispatch(receiveDataAction(todos, goals));
+            }
+          );
+        };
+      }
+
       // middleware
       const checker = (store) => (next) => (action) => {
         if (
@@ -303,13 +313,7 @@
         componentDidMount() {
           const { store } = this.props;
 
-          Promise.all([API.fetchTodos(), API.fetchGoals()]).then(
-            ([todos, goals]) => {
-              // console.log("todos", todos);
-              // console.log("goals", goals);
-              store.dispatch(receiveDataAction(todos, goals));
-            }
-          );
+          store.dispatch(handleInitialData());
 
           store.subscribe(() => this.forceUpdate());
         }
